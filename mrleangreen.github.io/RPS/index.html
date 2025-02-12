@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <script>
+        function playGame() {
+            let wins = 0;
+            let losses = 0;
+            let ties = 0;
+
+            const choices = ["R", "P", "S"];
+
+            function getComputerChoice() {
+                const randomIndex = Math.floor(Math.random() * choices.length);
+                return choices[randomIndex];
+            }
+
+            while (true) {
+                let userChoice = prompt("Enter R for Rock, P for Paper, or S for Scissors:").toUpperCase();
+
+                if (!choices.includes(userChoice)) {
+                    alert("Invalid input. Please enter R, P, or S.");
+                    continue;
+                }
+
+                let computerChoice = getComputerChoice();
+                alert(`Computer chose: ${computerChoice}`);
+
+                if (userChoice === computerChoice) {
+                    alert("It's a tie!");
+                    ties++;
+                } else if (
+                    (userChoice === "R" && computerChoice === "S") ||
+                    (userChoice === "P" && computerChoice === "R") ||
+                    (userChoice === "S" && computerChoice === "P")
+                ) {
+                    alert("You win!");
+                    wins++;
+                } else {
+                    alert("You lose!");
+                    losses++;
+                }
+
+                alert(`Wins: ${wins} | Losses: ${losses} | Ties: ${ties}`);
+
+                let playAgain = confirm("Do you want to play again?");
+                if (!playAgain) {
+                    alert("Thanks for playing!");
+                    break;
+                }
+            }
+        }
+
+        playGame();
+    </script>
+</body>
+</html>
